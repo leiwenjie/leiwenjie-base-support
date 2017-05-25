@@ -5,6 +5,7 @@ import java.util.Date;
 import org.nutz.dao.entity.annotation.ColDefine;
 import org.nutz.dao.entity.annotation.ColType;
 import org.nutz.dao.entity.annotation.Column;
+import org.nutz.dao.entity.annotation.Comment;
 import org.nutz.dao.entity.annotation.Id;
 import org.nutz.dao.entity.annotation.Index;
 import org.nutz.dao.entity.annotation.Table;
@@ -31,24 +32,44 @@ public class GlobalVar extends BaseEntity {
     @Id
     private int id;
 
+    /**
+     * 变量标识
+     */
     @Column(hump = true)
     @ColDefine(type = ColType.VARCHAR, width = 32, notNull = true)
+    @Comment("变量标识")
     private String varCode;
 
+    /**
+     * 变量名称
+     */
     @Column(hump = true)
     @ColDefine(type = ColType.VARCHAR, width = 32)
+    @Comment("变量名称")
     private String varName;
 
+    /**
+     * 变量值
+     */
     @Column
     @ColDefine(type = ColType.VARCHAR, width = 128, notNull = true)
+    @Comment("变量值")
     private String value;
 
+    /**
+     * 状态标识，1：启用；0：禁用
+     */
     @Column
     @ColDefine(type = ColType.VARCHAR, width = 2, notNull = true)
+    @Comment("状态标识，1：启用；0：禁用")
     private String status;
 
+    /**
+     * 创建时间
+     */
     @Column(hump = true)
     @ColDefine(type = ColType.TIMESTAMP, notNull = true, update = false)
+    @Comment("创建时间")
     private Date creationTime;
 
     public int getId() {

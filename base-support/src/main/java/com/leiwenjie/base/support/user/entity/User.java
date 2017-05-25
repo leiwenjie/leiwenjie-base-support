@@ -5,6 +5,7 @@ import java.util.Date;
 import org.nutz.dao.entity.annotation.ColDefine;
 import org.nutz.dao.entity.annotation.ColType;
 import org.nutz.dao.entity.annotation.Column;
+import org.nutz.dao.entity.annotation.Comment;
 import org.nutz.dao.entity.annotation.Id;
 import org.nutz.dao.entity.annotation.Index;
 import org.nutz.dao.entity.annotation.Table;
@@ -37,63 +38,116 @@ public class User extends BaseEntity {
     @Id
     private int id;
 
+    /**
+     * 登录名
+     */
     @Column(hump = true)
     @ColDefine(type = ColType.VARCHAR, width = 32, notNull = true)
+    @Comment("登录名")
     private String loginName;
 
+    /**
+     * 登录密码(加盐SHA-512）
+     */
     @Column
     @ColDefine(type = ColType.VARCHAR, width = 64, notNull = true)
+    @Comment("登录密码(加盐SHA-512）")
     private String password;
 
+    /**
+     * 邮箱
+     */
     @Column
     @ColDefine(type = ColType.VARCHAR, width = 256)
+    @Comment("邮箱")
     private String email;
 
+    /**
+     * 电话号码
+     */
     @Column
     @ColDefine(type = ColType.VARCHAR, width = 64)
+    @Comment("电话号码")
     private String phone;
 
+    /**
+     * 性别：1、男；2、女
+     */
     @Column
     @ColDefine(type = ColType.VARCHAR, width = 2)
+    @Comment("性别：1、男；2、女")
     private String sex;
 
+    /**
+     * 用户昵称
+     */
     @Column(hump = true)
     @ColDefine(type = ColType.VARCHAR, width = 32)
+    @Comment("用户昵称")
     private String nickName;
 
+    /**
+     * 所属地市
+     */
     @Column
     @ColDefine(type = ColType.VARCHAR, width = 32)
+    @Comment("所属地市")
     private String city;
 
+    /**
+     * 所属省份
+     */
     @Column
     @ColDefine(type = ColType.VARCHAR, width = 32)
+    @Comment("所属省份")
     private String province;
 
+    /**
+     * 所属国家
+     */
     @Column
     @ColDefine(type = ColType.VARCHAR, width = 32)
+    @Comment("所属国家")
     private String country;
 
+    /**
+     * 头像URL
+     */
     @Column
     @ColDefine(type = ColType.VARCHAR, width = 256)
+    @Comment("头像URL")
     private String headimgurl;
 
     /**
-     * 类型:1、系统注册；2、微信单点
+     * 用户来源：1、系统注册；2、微信单点注册
      */
     @Column
     @ColDefine(type = ColType.VARCHAR, width = 2, notNull = true)
+    @Comment("用户来源：1、系统注册；2、微信单点注册")
     private String type;
 
+    /**
+     * 注册时间
+     */
     @Column(hump = true)
     @ColDefine(type = ColType.TIMESTAMP, notNull = true, update = false)
+    @Comment("注册时间")
     private Date registerTime;
 
+    /**
+     * 最后登录时间
+     */
     @Column(hump = true)
     @ColDefine(type = ColType.TIMESTAMP)
+    @Comment("最后登录时间")
     private Date lastLoginTime;
 
+    /**
+     * 状态值：0、禁用；1、启用
+     */
     @Column
     @ColDefine(type = ColType.VARCHAR, width = 2, notNull = true)
+    @Comment("状态值：0、禁用；1、启用")
     private String status;
 
     public int getId() {

@@ -3,6 +3,7 @@ package com.leiwenjie.base.support.dictionary.entity;
 import org.nutz.dao.entity.annotation.ColDefine;
 import org.nutz.dao.entity.annotation.ColType;
 import org.nutz.dao.entity.annotation.Column;
+import org.nutz.dao.entity.annotation.Comment;
 import org.nutz.dao.entity.annotation.Id;
 import org.nutz.dao.entity.annotation.Index;
 import org.nutz.dao.entity.annotation.One;
@@ -34,17 +35,26 @@ public class DictionaryDetail extends BaseEntity {
      * 外键，关联字典类型ID
      */
     @Column(hump = true)
+    @Comment("外键，关联字典类型ID")
     private int dictId;
 
     @One(field = "dictId")
     private Dictionary dictionaryDo;
 
+    /**
+     * 显示值
+     */
     @Column(hump = true)
     @ColDefine(type = ColType.VARCHAR, width = 32, notNull = true)
+    @Comment("显示值")
     private String dictText;
 
+    /**
+     * 存储值
+     */
     @Column(hump = true)
     @ColDefine(type = ColType.VARCHAR, width = 32, notNull = true)
+    @Comment("存储值")
     private String dictValue;
 
     /**
@@ -52,6 +62,7 @@ public class DictionaryDetail extends BaseEntity {
      */
     @Column(hump = true)
     @ColDefine(type = ColType.VARCHAR, width = 2)
+    @Comment("是否默认标识，1：默认，0：不默认")
     private String defaultTag;
 
     public int getId() {

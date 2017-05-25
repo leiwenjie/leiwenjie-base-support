@@ -27,12 +27,12 @@ public class CreateTableTest {
 
     @Test
     public void testSaveUser() {
-        dao.create(User.class, false);
-        dao.create(Dictionary.class, false);
-        dao.create(DictionaryDetail.class, false);
-        dao.create(GlobalVar.class, false);
-        dao.create(OperatorLog.class, false);
-        dao.create(UserOpen.class, false);
-        Assert.assertTrue(1 == 1);
+        dao.create(User.class, true);
+        dao.create(Dictionary.class, true);
+        dao.create(DictionaryDetail.class, true);
+        dao.create(GlobalVar.class, true);
+        dao.create(OperatorLog.class, true);
+        dao.create(UserOpen.class, true);
+        Assert.assertTrue(true);
     }
 }

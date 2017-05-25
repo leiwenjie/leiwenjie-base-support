@@ -5,6 +5,7 @@ import java.util.Date;
 import org.nutz.dao.entity.annotation.ColDefine;
 import org.nutz.dao.entity.annotation.ColType;
 import org.nutz.dao.entity.annotation.Column;
+import org.nutz.dao.entity.annotation.Comment;
 import org.nutz.dao.entity.annotation.Id;
 import org.nutz.dao.entity.annotation.Index;
 import org.nutz.dao.entity.annotation.One;
@@ -37,18 +38,27 @@ public class UserOpen extends BaseEntity {
     @Id
     private int id;
 
+    /**
+     * 单点ID
+     */
     @Column(hump = true)
     @ColDefine(type = ColType.VARCHAR, width = 64, notNull = true)
+    @Comment("单点ID")
     private String openId;
 
+    /**
+     * 单点令牌
+     */
     @Column(hump = true)
     @ColDefine(type = ColType.VARCHAR, width = 128, notNull = true)
+    @Comment("单点令牌")
     private String openToken;
 
     /**
      * 外键，关联userId
      */
     @Column(hump = true)
+    @Comment("对应用户ID")
     private int userId;
 
     @One(field = "userId")
@@ -59,10 +69,15 @@ public class UserOpen extends BaseEntity {
      */
     @Column
     @ColDefine(type = ColType.VARCHAR, width = 2, notNull = true)
+    @Comment("单点类型：1、微信")
     private String type;
 
+    /**
+     * 登录时间
+     */
     @Column(hump = true)
     @ColDefine(type = ColType.TIMESTAMP, notNull = true, update = false)
+    @Comment("登录时间")
     private Date creationTime;
 
     public int getId() {

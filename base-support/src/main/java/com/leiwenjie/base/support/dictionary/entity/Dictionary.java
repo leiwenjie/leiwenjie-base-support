@@ -5,6 +5,7 @@ import java.util.Date;
 import org.nutz.dao.entity.annotation.ColDefine;
 import org.nutz.dao.entity.annotation.ColType;
 import org.nutz.dao.entity.annotation.Column;
+import org.nutz.dao.entity.annotation.Comment;
 import org.nutz.dao.entity.annotation.Id;
 import org.nutz.dao.entity.annotation.Index;
 import org.nutz.dao.entity.annotation.Table;
@@ -33,10 +34,12 @@ public class Dictionary extends BaseEntity {
 
     @Column(hump = true)
     @ColDefine(type = ColType.VARCHAR, width = 32, notNull = true)
+    @Comment("字典名称")
     private String dictName;
 
     @Column(hump = true)
     @ColDefine(type = ColType.VARCHAR, width = 32, notNull = true)
+    @Comment("字典标识")
     private String dictKey;
 
     /**
@@ -44,10 +47,15 @@ public class Dictionary extends BaseEntity {
      */
     @Column(hump = true)
     @ColDefine(type = ColType.VARCHAR, width = 2)
+    @Comment("是否常规项，1：不可删除；0：可以删除")
     private String fixedTag;
 
+    /**
+     * 创建时间
+     */
     @Column(hump = true)
     @ColDefine(type = ColType.TIMESTAMP, notNull = true, update = false)
+    @Comment("创建时间")
     private Date creationTime;
 
     public int getId() {

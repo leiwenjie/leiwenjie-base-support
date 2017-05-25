@@ -5,6 +5,7 @@ import java.util.Date;
 import org.nutz.dao.entity.annotation.ColDefine;
 import org.nutz.dao.entity.annotation.ColType;
 import org.nutz.dao.entity.annotation.Column;
+import org.nutz.dao.entity.annotation.Comment;
 import org.nutz.dao.entity.annotation.Id;
 import org.nutz.dao.entity.annotation.Index;
 import org.nutz.dao.entity.annotation.One;
@@ -40,6 +41,7 @@ public class OperatorLog extends BaseEntity {
      */
     @Column(hump = true)
     @ColDefine(type = ColType.VARCHAR, width = 32, notNull = true)
+    @Comment("模块标识")
     private String moduleCode;
 
     /**
@@ -47,10 +49,12 @@ public class OperatorLog extends BaseEntity {
      */
     @Column(hump = true)
     @ColDefine(type = ColType.VARCHAR, width = 32, notNull = true)
+    @Comment("操作类型")
     private String operaType;
 
     @Column(hump = true)
     @ColDefine(type = ColType.VARCHAR, width = 32, notNull = true)
+    @Comment("操作名称")
     private String operaName;
 
     /**
@@ -58,6 +62,7 @@ public class OperatorLog extends BaseEntity {
      */
     @Column(hump = true)
     @ColDefine(type = ColType.TIMESTAMP, notNull = true, update = false)
+    @Comment("操作时间")
     private Date operaTime;
 
     /**
@@ -65,12 +70,14 @@ public class OperatorLog extends BaseEntity {
      */
     @Column(hump = true)
     @ColDefine(type = ColType.VARCHAR, width = 32)
+    @Comment("操作IP地址")
     private String operaIp;
 
     /**
      * 操作用户ID，外键
      */
     @Column(hump = true)
+    @Comment("关联用户ID")
     private int userId;
 
     @One(field = "userId")
