@@ -2,7 +2,17 @@ package com.leiwenjie.base.support.operalog.entity;
 
 import java.util.Date;
 
+import org.nutz.dao.entity.annotation.ColDefine;
+import org.nutz.dao.entity.annotation.ColType;
+import org.nutz.dao.entity.annotation.Column;
+import org.nutz.dao.entity.annotation.Id;
+import org.nutz.dao.entity.annotation.Index;
+import org.nutz.dao.entity.annotation.One;
+import org.nutz.dao.entity.annotation.Table;
+import org.nutz.dao.entity.annotation.TableIndexes;
+
 import com.leiwenjie.base.support.common.base.entity.BaseEntity;
+import com.leiwenjie.base.support.user.entity.User;
 
 /**
  * 操作日志表
@@ -11,6 +21,10 @@ import com.leiwenjie.base.support.common.base.entity.BaseEntity;
  * @version 1.0
  * @date 2017年5月11日 下午8:58:45
  */
+@Table("t_operator_log")
+@TableIndexes({ @Index(unique = true, fields = { "id" }, name = "unique_t_operator_log_id"),
+        @Index(fields = { "moduleCode" }, name = "idx_t_opera_log_module_code"),
+        @Index(fields = { "userId" }, name = "idx_t_opera_log_user_id") })
 public class OperatorLog extends BaseEntity {
 
     /**
@@ -18,34 +32,49 @@ public class OperatorLog extends BaseEntity {
      */
     private static final long serialVersionUID = 1L;
 
+    @Id
     private int id;
 
     /**
      * 操作模块名
      */
+    @Column(hump = true)
+    @ColDefine(type = ColType.VARCHAR, width = 32, notNull = true)
     private String moduleCode;
 
     /**
      * 操作类型
      */
+    @Column(hump = true)
+    @ColDefine(type = ColType.VARCHAR, width = 32, notNull = true)
     private String operaType;
 
+    @Column(hump = true)
+    @ColDefine(type = ColType.VARCHAR, width = 32, notNull = true)
     private String operaName;
 
     /**
      * 操作时间
      */
+    @Column(hump = true)
+    @ColDefine(type = ColType.TIMESTAMP, notNull = true, update = false)
     private Date operaTime;
 
     /**
      * 操作IP
      */
+    @Column(hump = true)
+    @ColDefine(type = ColType.VARCHAR, width = 32)
     private String operaIp;
 
     /**
      * 操作用户ID，外键
      */
-    private String userId;
+    @Column(hump = true)
+    private int userId;
+
+    @One(field = "userId")
+    private User userDo;
 
     public int getId() {
         return id;
@@ -95,12 +124,20 @@ public class OperatorLog extends BaseEntity {
         this.operaIp = operaIp;
     }
 
-    public String getUserId() {
+    public int getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(int userId) {
         this.userId = userId;
+    }
+
+    public User getUserDo() {
+        return userDo;
+    }
+
+    public void setUserDo(User userDo) {
+        this.userDo = userDo;
     }
 
     @Override

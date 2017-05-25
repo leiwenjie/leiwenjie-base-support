@@ -2,6 +2,14 @@ package com.leiwenjie.base.support.dictionary.entity;
 
 import java.util.Date;
 
+import org.nutz.dao.entity.annotation.ColDefine;
+import org.nutz.dao.entity.annotation.ColType;
+import org.nutz.dao.entity.annotation.Column;
+import org.nutz.dao.entity.annotation.Id;
+import org.nutz.dao.entity.annotation.Index;
+import org.nutz.dao.entity.annotation.Table;
+import org.nutz.dao.entity.annotation.TableIndexes;
+
 import com.leiwenjie.base.support.common.base.entity.BaseEntity;
 
 /**
@@ -11,24 +19,35 @@ import com.leiwenjie.base.support.common.base.entity.BaseEntity;
  * @version 1.0
  * @date 2017年5月11日 下午8:46:43
  */
-public class DictionaryDo extends BaseEntity {
+@Table("t_dictionary")
+@TableIndexes({ @Index(unique = true, fields = { "id" }, name = "unique_t_dictionary_id") })
+public class Dictionary extends BaseEntity {
 
     /**
      * serialVersionUID
      */
     private static final long serialVersionUID = 1L;
 
+    @Id
     private int id;
 
+    @Column(hump = true)
+    @ColDefine(type = ColType.VARCHAR, width = 32, notNull = true)
     private String dictName;
 
+    @Column(hump = true)
+    @ColDefine(type = ColType.VARCHAR, width = 32, notNull = true)
     private String dictKey;
 
     /**
      * 是否不可删除
      */
+    @Column(hump = true)
+    @ColDefine(type = ColType.VARCHAR, width = 2)
     private String fixedTag;
 
+    @Column(hump = true)
+    @ColDefine(type = ColType.TIMESTAMP, notNull = true, update = false)
     private Date creationTime;
 
     public int getId() {

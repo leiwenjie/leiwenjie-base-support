@@ -2,6 +2,14 @@ package com.leiwenjie.base.support.globalvar.entity;
 
 import java.util.Date;
 
+import org.nutz.dao.entity.annotation.ColDefine;
+import org.nutz.dao.entity.annotation.ColType;
+import org.nutz.dao.entity.annotation.Column;
+import org.nutz.dao.entity.annotation.Id;
+import org.nutz.dao.entity.annotation.Index;
+import org.nutz.dao.entity.annotation.Table;
+import org.nutz.dao.entity.annotation.TableIndexes;
+
 import com.leiwenjie.base.support.common.base.entity.BaseEntity;
 
 /**
@@ -11,6 +19,8 @@ import com.leiwenjie.base.support.common.base.entity.BaseEntity;
  * @version 1.0
  * @date 2017年5月11日 下午8:55:26
  */
+@Table("t_global_var")
+@TableIndexes({ @Index(unique = true, fields = { "id" }, name = "unique_t_global_var_id") })
 public class GlobalVar extends BaseEntity {
 
     /**
@@ -18,16 +28,27 @@ public class GlobalVar extends BaseEntity {
      */
     private static final long serialVersionUID = 1L;
 
+    @Id
     private int id;
 
+    @Column(hump = true)
+    @ColDefine(type = ColType.VARCHAR, width = 32, notNull = true)
     private String varCode;
 
+    @Column(hump = true)
+    @ColDefine(type = ColType.VARCHAR, width = 32)
     private String varName;
 
+    @Column
+    @ColDefine(type = ColType.VARCHAR, width = 128, notNull = true)
     private String value;
 
+    @Column
+    @ColDefine(type = ColType.VARCHAR, width = 2, notNull = true)
     private String status;
 
+    @Column(hump = true)
+    @ColDefine(type = ColType.TIMESTAMP, notNull = true, update = false)
     private Date creationTime;
 
     public int getId() {

@@ -2,6 +2,14 @@ package com.leiwenjie.base.support.user.entity;
 
 import java.util.Date;
 
+import org.nutz.dao.entity.annotation.ColDefine;
+import org.nutz.dao.entity.annotation.ColType;
+import org.nutz.dao.entity.annotation.Column;
+import org.nutz.dao.entity.annotation.Id;
+import org.nutz.dao.entity.annotation.Index;
+import org.nutz.dao.entity.annotation.Table;
+import org.nutz.dao.entity.annotation.TableIndexes;
+
 import com.leiwenjie.base.support.common.base.entity.BaseEntity;
 
 /**
@@ -11,49 +19,81 @@ import com.leiwenjie.base.support.common.base.entity.BaseEntity;
  * @version 1.0
  * @date 2017年5月11日 下午8:30:32
  */
-public class UserDo extends BaseEntity {
+@Table("t_user")
+@TableIndexes({ @Index(unique = true, fields = { "id" }, name = "unique_t_user_id") })
+public class User extends BaseEntity {
 
     /**
      * 用户来源，1：本地注册；2：微信登录
      */
     public static final String USER_REGIST_TYPE_LOCAL = "1";
     public static final String USER_REGIST_TYPE_WEBCHAT = "2";
-    
 
     /**
      * serialVersionUID
      */
     private static final long serialVersionUID = 1L;
 
+    @Id
     private int id;
 
+    @Column(hump = true)
+    @ColDefine(type = ColType.VARCHAR, width = 32, notNull = true)
     private String loginName;
 
+    @Column
+    @ColDefine(type = ColType.VARCHAR, width = 64, notNull = true)
     private String password;
 
+    @Column
+    @ColDefine(type = ColType.VARCHAR, width = 256)
     private String email;
 
+    @Column
+    @ColDefine(type = ColType.VARCHAR, width = 64)
     private String phone;
 
+    @Column
+    @ColDefine(type = ColType.VARCHAR, width = 2)
     private String sex;
 
+    @Column(hump = true)
+    @ColDefine(type = ColType.VARCHAR, width = 32)
     private String nickName;
 
+    @Column
+    @ColDefine(type = ColType.VARCHAR, width = 32)
     private String city;
 
+    @Column
+    @ColDefine(type = ColType.VARCHAR, width = 32)
     private String province;
 
+    @Column
+    @ColDefine(type = ColType.VARCHAR, width = 32)
     private String country;
 
+    @Column
+    @ColDefine(type = ColType.VARCHAR, width = 256)
     private String headimgurl;
 
     /**
      * 类型:1、系统注册；2、微信单点
      */
+    @Column
+    @ColDefine(type = ColType.VARCHAR, width = 2, notNull = true)
     private String type;
 
+    @Column(hump = true)
+    @ColDefine(type = ColType.TIMESTAMP, notNull = true, update = false)
     private Date registerTime;
 
+    @Column(hump = true)
+    @ColDefine(type = ColType.TIMESTAMP)
+    private Date lastLoginTime;
+
+    @Column
+    @ColDefine(type = ColType.VARCHAR, width = 2, notNull = true)
     private String status;
 
     public int getId() {
