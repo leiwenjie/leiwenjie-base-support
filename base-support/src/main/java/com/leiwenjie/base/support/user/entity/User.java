@@ -11,7 +11,7 @@ import org.nutz.dao.entity.annotation.Index;
 import org.nutz.dao.entity.annotation.Table;
 import org.nutz.dao.entity.annotation.TableIndexes;
 
-import com.leiwenjie.base.support.common.base.entity.BaseEntity;
+import com.leiwenjie.base.support.common.base.entity.StatefulEntity;
 
 /**
  * 用户信息
@@ -22,7 +22,7 @@ import com.leiwenjie.base.support.common.base.entity.BaseEntity;
  */
 @Table("t_user")
 @TableIndexes({ @Index(unique = true, fields = { "id" }, name = "unique_t_user_id") })
-public class User extends BaseEntity {
+public class User extends StatefulEntity {
 
     /**
      * 用户来源，1：本地注册；2：微信登录
@@ -142,14 +142,6 @@ public class User extends BaseEntity {
     @Comment("最后登录时间")
     private Date lastLoginTime;
 
-    /**
-     * 状态值：0、禁用；1、启用
-     */
-    @Column
-    @ColDefine(type = ColType.VARCHAR, width = 2, notNull = true)
-    @Comment("状态值：0、禁用；1、启用")
-    private String status;
-
     public int getId() {
         return id;
     }
@@ -252,14 +244,6 @@ public class User extends BaseEntity {
 
     public void setRegisterTime(Date registerTime) {
         this.registerTime = registerTime;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
     }
 
     @Override

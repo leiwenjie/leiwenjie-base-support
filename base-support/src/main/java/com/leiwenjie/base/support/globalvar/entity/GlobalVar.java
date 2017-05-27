@@ -11,7 +11,7 @@ import org.nutz.dao.entity.annotation.Index;
 import org.nutz.dao.entity.annotation.Table;
 import org.nutz.dao.entity.annotation.TableIndexes;
 
-import com.leiwenjie.base.support.common.base.entity.BaseEntity;
+import com.leiwenjie.base.support.common.base.entity.StatefulEntity;
 
 /**
  * 全局变量表
@@ -22,7 +22,7 @@ import com.leiwenjie.base.support.common.base.entity.BaseEntity;
  */
 @Table("t_global_var")
 @TableIndexes({ @Index(unique = true, fields = { "id" }, name = "unique_t_global_var_id") })
-public class GlobalVar extends BaseEntity {
+public class GlobalVar extends StatefulEntity {
 
     /**
      * serialVersionUID
@@ -55,14 +55,6 @@ public class GlobalVar extends BaseEntity {
     @ColDefine(type = ColType.VARCHAR, width = 128, notNull = true)
     @Comment("变量值")
     private String value;
-
-    /**
-     * 状态标识，1：启用；0：禁用
-     */
-    @Column
-    @ColDefine(type = ColType.VARCHAR, width = 2, notNull = true)
-    @Comment("状态标识，1：启用；0：禁用")
-    private String status;
 
     /**
      * 创建时间
@@ -102,14 +94,6 @@ public class GlobalVar extends BaseEntity {
 
     public void setValue(String value) {
         this.value = value;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
     }
 
     public Date getCreationTime() {
