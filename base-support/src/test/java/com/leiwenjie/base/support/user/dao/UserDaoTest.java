@@ -18,7 +18,7 @@ import com.leiwenjie.base.support.user.entity.User;
 public class UserDaoTest {
 
     @Inject
-    protected IUserDao userDao;
+    protected UserDao userDao;
 
     @Inject
     protected Dao dao;
