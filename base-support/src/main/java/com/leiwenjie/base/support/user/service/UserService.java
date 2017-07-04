@@ -1,21 +1,27 @@
-package com.leiwenjie.base.support.user.dao;
+package com.leiwenjie.base.support.user.service;
+
+import java.util.List;
 
 import org.nutz.dao.Dao;
 import org.nutz.ioc.loader.annotation.Inject;
 import org.nutz.ioc.loader.annotation.IocBean;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.leiwenjie.base.support.common.SupportConstants;
 import com.leiwenjie.base.support.user.entity.User;
 
 /**
- * 用户的数据访问类
+ * 用户访问实现类
  *
  * @author leiwenjie leiwenjie.cn@gmail.com
  * @version 1.0
- * @date 2017年5月16日 下午8:14:18
+ * @date 2017年6月2日 下午8:10:16
  */
 @IocBean
-public class UserDao {
+public class UserService {
+
+    static final Logger logger = LoggerFactory.getLogger(User.class);
 
     @Inject(optional = true)
     protected Dao dao;
@@ -57,6 +63,16 @@ public class UserDao {
      */
     public int updateIgnoreNull(User t) {
         return dao.updateIgnoreNull(t);
+    }
+
+    /**
+     * 获取用户信息列表
+     *
+     * @return List<User>
+     ** @throws
+     */
+    public List<User> query() {
+        return dao.query(User.class, null);
     }
 
 }

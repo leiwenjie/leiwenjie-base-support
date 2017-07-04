@@ -26,7 +26,7 @@ public class MyNutTestRunner extends NutTestRunner {
         Ioc ioc = null;
         try {
             ioc = new NutIoc(new ComboIocLoader("*js", "ioc/", "*anno", "com.leiwenjie.base.support.base",
-                    "com.leiwenjie.base.support.user.dao"));
+                    "com.leiwenjie.base.support.user"));
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
